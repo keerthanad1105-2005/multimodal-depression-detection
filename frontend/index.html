@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Multimodal Depression Detection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="container">
+
+    <h1>🧠 Multimodal Depression Detection</h1>
+
+    <p class="subtitle">
+        AI-powered depression assessment using Text, Face and Voice Analysis
+    </p>
+
+    <div class="card">
+
+        <label>Text Analysis</label>
+
+        <textarea
+            id="text"
+            placeholder="Describe how you feel today...">
+        </textarea>
+
+    </div>
+
+    <div class="card">
+
+        <label>Face Image</label>
+
+        <input type="file" id="image">
+
+    </div>
+
+    <div class="card">
+
+        <label>Voice Audio</label>
+
+        <input type="file" id="audio">
+
+    </div>
+
+    <button onclick="analyze()">
+        Analyze Depression
+    </button>
+
+    <div id="loading"></div>
+
+    <div id="result"></div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
