@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Multimodal Depression Detection</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- NAVBAR -->
+<!-- ========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        🧠 Depression Detection
+
+    </div>
+
+    <div class="nav-right">
+
+    <button
+        class="nav-btn"
+        onclick="showSection('homeSection')">
+
+        🏠 Home
+
+    </button>
+
+    <span id="welcome">
+        Welcome
+    </span>
+
+    <button
+        class="theme-toggle"
+        onclick="toggleTheme()">
+
+        🌙
+
+    </button>
+
+    <button id="logoutBtn">
+
+        Logout
+
+    </button>
+
+</div>
+
+</nav>
+
+<!-- ========================= -->
+<!-- MAIN CONTAINER -->
+<!-- ========================= -->
+
+<div class="container">
+
+<!-- ========================= -->
+<!-- HOME -->
+<!-- ========================= -->
+
+<section id="homeSection">
+
+    <div class="dashboard-summary">
+
+    <div class="summary-card">
+        <h3>Total Analyses</h3>
+        <h1 id="homeTotalAnalysis">0</h1>
+    </div>
+
+    <div class="summary-card">
+        <h3>Average Score</h3>
+        <h1 id="homeAverageScore">0%</h1>
+    </div>
+
+    <div class="summary-card">
+        <h3>High Risk Cases</h3>
+        <h1 id="homeHighRisk">0</h1>
+    </div>
+
+    <div class="summary-card">
+        <h3>Total Users</h3>
+        <h1 id="homeTotalUsers">0</h1>
+    </div>
+
+</div>
+
+    <div class="hero">
+
+        <h1>
+
+            AI Mental Health Dashboard
+
+        </h1>
+
+        <p>
+
+            Multimodal Depression Detection using
+            Text, Face and Voice Analysis
+
+        </p>
+
+    </div>
+
+    <div class="home-grid">
+
+        <div class="home-card"
+             onclick="showSection('analysisSection')">
+
+            <div class="icon">
+
+                🧠
+
+            </div>
+
+            <h2>
+
+                Depression Analysis
+
+            </h2>
+
+            <p>
+
+                Analyze depression using Text,
+                Face and Voice.
+
+            </p>
+
+        </div>
+
+        <div class="home-card"
+             onclick="showSection('historySection')">
+
+            <div class="icon">
+
+                📜
+
+            </div>
+
+            <h2>
+
+                Analysis History
+
+            </h2>
+
+            <p>
+
+                Search, Filter,
+                Delete and Export records.
+
+            </p>
+
+        </div>
+
+        <div class="home-card"
+             onclick="showSection('statisticsSection')">
+
+            <div class="icon">
+
+                📊
+
+            </div>
+
+            <h2>
+
+                Statistics Dashboard
+
+            </h2>
+
+            <p>
+
+                View trends,
+                charts and analytics.
+
+            </p>
+
+        </div>
+
+        <div class="home-card"
+             onclick="showSection('adminSection')">
+
+            <div class="icon">
+
+                👨‍💼
+
+            </div>
+
+            <h2>
+
+                Admin Dashboard
+
+            </h2>
+
+            <p>
+
+                System monitoring,
+                users and reports.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- ANALYSIS -->
+<!-- ========================= -->
+
+<section
+id="analysisSection"
+style="display:none;">
+
+<h1 class="page-title">
+
+    🧠 Depression Analysis
+
+</h1>
+
+<div style="margin-bottom:20px;">
+    <button class="primary-btn" onclick="showSection('homeSection')">
+        🏠 Back to Home
+    </button>
+</div>
+
+<p class="page-subtitle">
+
+    Complete patient information
+    before starting the analysis.
+
+</p>
+
+<!-- Patient Information -->
+
+<div class="card">
+
+<h2>
+
+Patient Information
+
+</h2>
+
+<div class="patient-grid">
+
+    <div>
+        <label>Full Name</label>
+
+        <input
+            type="text"
+            id="patientName">
+    </div>
+
+
+    <div>
+        <label>Age</label>
+
+        <input
+            type="number"
+            id="patientAge">
+    </div>
+
+
+    <div>
+        <label>Gender</label>
+
+        <select id="patientGender">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+    </div>
+
+
+    <div>
+        <label>Occupation</label>
+
+        <input
+            type="text"
+            id="patientOccupation">
+    </div>
+
+
+    <div>
+        <label>Symptoms</label>
+
+        <input
+            type="text"
+            id="patientSymptoms">
+    </div>
+
+    <div>
+        <label>Duration</label>
+
+        <input
+            type="text"
+            id="patientDuration"
+            readonly
+            placeholder="Automatically calculated">
+    </div>
+
+    <div>
+        <label>When Symptoms Started</label>
+
+        <input
+            type="date"
+            id="patientStarted"
+            required>
+    </div>
+        
+
+</div>
+
+<!-- ========================= -->
+<!-- TEXT + FACE + VOICE -->
+<!-- ========================= -->
+
+<div id="textSection">
+
+    <!-- TEXT -->
+
+    <div class="card">
+
+        <h2>📝 Text Analysis</h2>
+
+        <textarea
+            id="text"
+            rows="6"
+            placeholder="Describe how you feel today..."></textarea>
+
+    </div>
+
+    <!-- FACE -->
+
+    <div class="card">
+
+        <h2>😊 Face Analysis</h2>
+
+        <video
+            id="video"
+            autoplay
+            playsinline
+            class="video-preview">
+        </video>
+
+        <canvas
+            id="canvas"
+            width="320"
+            height="240"
+            style="display:none;">
+        </canvas>
+
+        <img
+        id="capturedPreview"
+        style="
+            display:none;
+            width:220px;
+            margin-top:15px;
+            border-radius:10px;
+            border:2px solid #4F46E5;">
+
+        <div class="button-group">
+
+            <button
+                type="button"
+                onclick="startCamera()">
+
+                📷 Start Camera
+
+            </button>
+
+            <button
+                type="button"
+                onclick="captureImage()">
+
+                📸 Capture Face
+
+            </button>
+
+            <button
+                type="button"
+                onclick="retakeImage()">
+
+                🔄 Retake
+
+            </button>
+
+        </div>
+
+        <p class="or-text">
+            OR
+        </p>
+
+        <input
+            type="file"
+            id="face"
+            accept="image/*">
+
+    </div>
+
+    <!-- VOICE -->
+
+    <div class="card">
+
+        <h2>🎤 Voice Analysis</h2>
+
+        <input
+            type="file"
+            id="voice"
+            accept=".wav">
+
+    </div>
+
+    <div class="center">
+
+         <div class="button-group">
+
+    <button
+        id="analyzeBtn"
+        class="primary-btn">
+
+        Analyze Depression
+
+    </button>
+
+    <button
+        type="button"
+        onclick="resetForm()"
+        class="secondary-btn">
+
+        Reset Form
+
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- LOADING -->
+<!-- ========================= -->
+
+<div
+    id="loading"
+    class="loading-area">
+
+    <div class="loader"></div>
+
+    <p>
+
+        AI is analyzing the patient's mental health...
+
+    </p>
+
+</div>
+
+<!-- ========================= -->
+<!-- RESULT -->
+<!-- ========================= -->
+
+<div id="result" class="result-card" style="display:none;"></div>
+
+<div id="reportActions"
+     style="display:none; text-align:center; margin-top:20px;">
+
+    <button
+        id="downloadBtn"
+        class="analyze-btn">
+
+        Download Report
+
+    </button>
+
+</div>
+</section>
+
+<!-- ========================= -->
+<!-- HISTORY SECTION -->
+<!-- ========================= -->
+
+<section
+id="historySection"
+style="display:none;">
+
+    <h1 class="page-title">
+        📜 Analysis History
+    </h1>
+
+    <div style="margin-bottom:20px;">
+    <button class="primary-btn" onclick="showSection('homeSection')">
+        🏠 Back to Home
+    </button>
+</div>
+
+    <div class="card">
+
+        <div class="history-top">
+
+            <input
+                type="text"
+                id="searchHistory"
+                placeholder="🔍 Search History..."
+                onkeyup="searchHistory()">
+
+            <select
+                id="historyFilter"
+                onchange="filterHistory()">
+
+                <option value="all">All Records</option>
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+
+            </select>
+
+            <button
+                id="exportExcelBtn"
+                class="primary-btn">
+
+                📥 Export Excel
+
+            </button>
+
+        </div>
+
+        <table id="historyTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>User</th>
+                    <th>Type</th>
+                    <th>Score</th>
+                    <th>Level</th>
+                    <th>Date</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- STATISTICS -->
+<!-- ========================= -->
+
+<section
+id="statisticsSection"
+style="display:none;">
+
+<h1 class="page-title">
+
+📊 Depression Statistics
+
+</h1>
+
+<div style="margin-bottom:20px;">
+    <button class="primary-btn" onclick="showSection('homeSection')">
+        🏠 Back to Home
+    </button>
+</div>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+
+<h3>Total Analyses</h3>
+
+<h1 id="totalAnalysis">0</h1>
+
+</div>
+
+<div class="stat-card">
+
+<h3>Average Score</h3>
+
+<h1 id="avgScore">0%</h1>
+
+</div>
+
+<div class="stat-card">
+
+<h3>High Depression</h3>
+
+<h1 id="highCount">0</h1>
+
+</div>
+
+<div class="stat-card">
+
+<h3>Most Common Level</h3>
+
+<h1 id="commonLevel">-</h1>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+
+Depression Trend
+
+</h2>
+
+<canvas id="scoreChart"></canvas>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- ADMIN -->
+<!-- ========================= -->
+
+<section
+id="adminSection"
+style="display:none;">
+
+<h1 class="page-title">
+
+👨‍💼 Admin Dashboard
+
+</h1>
+
+<div style="margin-bottom:20px;">
+    <button class="primary-btn" onclick="showSection('homeSection')">
+        🏠 Back to Home
+    </button>
+</div>
+
+<div class="admin-grid">
+
+<div class="admin-card">
+
+<h3>Total Users</h3>
+
+<h1 id="totalUsers">0</h1>
+
+</div>
+
+<div class="admin-card">
+
+<h3>Total Analyses</h3>
+
+<h1 id="adminTotalAnalysis">0</h1>
+
+</div>
+
+<div class="admin-card">
+
+<h3>Today's Analyses</h3>
+
+<h1 id="todayAnalysis">0</h1>
+
+</div>
+
+<div class="admin-card">
+
+<h3>Average Score</h3>
+
+<h1 id="adminAvgScore">0%</h1>
+
+</div>
+
+<div class="admin-card">
+
+<h3>High Risk Cases</h3>
+
+<h1 id="highRisk">0</h1>
+
+</div>
+
+<div class="admin-card">
+
+<h3>System Status</h3>
+
+<h1 class="online">
+
+🟢 Online
+
+</h1>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+<div id="toast" class="toast"></div>
+<footer>
+
+© 2026 Multimodal Depression Detection System
+
+</footer>
+
+
+<!-- ========================= -->
+<!-- LIBRARIES -->
+<!-- ========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
