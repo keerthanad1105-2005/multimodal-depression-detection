@@ -6,7 +6,7 @@
                 API URL
 ======================================================*/
 
-const API_URL = "https://publishers-improving-delete-carmen.trycloudflare.com";
+const API_URL = "https://collection-entire-bucks-montana.trycloudflare.com";
 
 /*=====================================================
                 GLOBAL VARIABLES
